@@ -1,27 +1,18 @@
 import java.util.Scanner;
 
-/**
- * Sistema de gestión de asientos de un bus.
- * Estructura: matriz boolean[FILAS][COLUMNAS]
- *   false = disponible
- *   true  = ocupado
- */
+
 public class GestionAsientosBus {
 
-    // Constantes: evitan "números mágicos" y facilitan mantenimiento
     private static final int FILAS = 8;
     private static final int COLUMNAS = 4;
 
-    // Estado del bus
     private final boolean[][] asientos = new boolean[FILAS][COLUMNAS];
 
     private final Scanner sc = new Scanner(System.in);
 
     public static void main(String[] args) {
         new GestionAsientosBus().ejecutar();
-    }
-
-    // -------------------- MENÚ PRINCIPAL --------------------
+    } 
 
     private void ejecutar() {
         int opcion;
@@ -35,7 +26,7 @@ public class GestionAsientosBus {
                 case 3 -> consultarAsiento();
                 case 4 -> mostrarAsientos();
                 case 5 -> contarDisponibles();
-                case 0 -> System.out.println("Saliendo del sistema...");
+                case 0 -> System.out.println("Saliendo ...");
                 default -> System.out.println("Opción inválida. Intente nuevamente.");
             }
             System.out.println();
@@ -54,8 +45,7 @@ public class GestionAsientosBus {
         System.out.println("0. Salir");
     }
 
-    // -------------------- FUNCIONALIDADES --------------------
-
+    
     private void reservarAsiento() {
         int[] pos = leerPosicion();
         if (pos == null) return;
@@ -120,13 +110,7 @@ public class GestionAsientosBus {
         System.out.println("Asientos disponibles: " + disponibles + " de " + (FILAS * COLUMNAS));
     }
 
-    // -------------------- UTILIDADES DE ENTRADA --------------------
-
-    /**
-     * Solicita fila y columna al usuario, valida el rango
-     * y devuelve un arreglo {fila, columna} en índices base 0.
-     * Devuelve null si el usuario ingresa datos inválidos.
-     */
+    
     private int[] leerPosicion() {
         int fila = leerEntero("Ingrese el número de fila (1-" + FILAS + "): ") - 1;
         int col = leerEntero("Ingrese el número de puesto (1-" + COLUMNAS + "): ") - 1;
@@ -145,7 +129,7 @@ public class GestionAsientosBus {
             sc.next();
         }
         int valor = sc.nextInt();
-        sc.nextLine(); // limpia el salto de línea pendiente
+        sc.nextLine();
         return valor;
     }
 }
